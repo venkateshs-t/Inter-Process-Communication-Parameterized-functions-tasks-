@@ -10,25 +10,25 @@ class tb#(parameter rx);
 // parameterized task 
 //--------------------------------------------------------------------------------------------
 
-task mytask(input bit [rx-1:0]a, input bit [rx-1:0]b);
-  bit[rx-1:0] x;
-  bit[rx-1:0] y;
-  x=a;
-  y=b;
-  $display("x=%0d,y=%0d,a=%0d,b=%0d",x,y,a,b);
-endtask
+ task mytask(input bit [rx-1:0]a, input bit [rx-1:0]b);
+   bit[rx-1:0] x;
+   bit[rx-1:0] y;
+   x=a;
+   y=b;
+   $display("x=%0d,y=%0d,a=%0d,b=%0d",x,y,a,b);
+ endtask
 
 //--------------------------------------------------------------------------------------------
 // Calling task 
 //--------------------------------------------------------------------------------------------
   
-task mytask2;
-  bit [rx-1:0]a;
-  bit [rx-1:0]b;
-  a=8;
-  b=11;
-  mytask(a,b);
-endtask
+ task mytask2;
+   bit [rx-1:0]a;
+   bit [rx-1:0]b;
+   a=8;
+   b=11;
+   mytask(a,b);
+ endtask
   
 endclass
 
@@ -36,7 +36,7 @@ endclass
 // Top module
 //--------------------------------------------------------------------------------------------
 
-module ptask();
+ module ptask();
   
   tb#(4) p;
   

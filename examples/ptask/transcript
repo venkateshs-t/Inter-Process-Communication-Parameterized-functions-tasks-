@@ -1,5 +1,5 @@
 # vsim -novopt work.ptask -c -do "log -r /*; add wave -r /*; run -all;" -wlf waveform.wlf 
-# Start time: 23:05:37 on Oct 19,2021
+# Start time: 20:41:58 on Oct 22,2021
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
@@ -27,5 +27,5 @@
 #  run -all
 # x=8,y=11,a=8,b=11
 # 
-# End time: 23:05:41 on Oct 19,2021, Elapsed time: 0:00:04
+# End time: 20:42:04 on Oct 22,2021, Elapsed time: 0:00:06
 # Errors: 2, Warnings: 1

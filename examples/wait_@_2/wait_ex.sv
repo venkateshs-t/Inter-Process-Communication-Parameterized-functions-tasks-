@@ -1,55 +1,36 @@
 //--------------------------------------------------------------------------------------------
-// class: Parameterized class
-// Description of the class
-// class with one parameterized task and one calling task 
+// code with two different wait operators(@,wait)
 //--------------------------------------------------------------------------------------------
-
-class tb#(parameter rx);
-
-//--------------------------------------------------------------------------------------------
-// parameterized task 
-//--------------------------------------------------------------------------------------------
-
-task mytask(input bit [rx-1:0]a, input bit [rx-1:0]b);
-    
- bit[rx-1:0] x;
- bit[rx-1:0] y;
-    
-    x=a;
-    y=b;
-    
- $display("x=%0d,y=%0d,a=%0d,b=%0d",x,y,a,b);
-    
-endtask
-
-//--------------------------------------------------------------------------------------------
-// Calling task 
-//--------------------------------------------------------------------------------------------
+  module e1;
   
-task mytask2;
-    
-  bit [rx-1:0]a;
-  bit [rx-1:0]b;
-    
-    a=8;
-    b=11;
-  
-  mytask(a,b);
-endtask
-  
-endclass
-
+  event e1;
 //--------------------------------------------------------------------------------------------
-// Top module
+// process-1 triggering the event
 //--------------------------------------------------------------------------------------------
-
-module top();
-  
-  tb#(4) p;
-  
-  initial begin
-    p = new();
-    p.mytask2;
+  initial
+  begin
+    #20 ->e1;
+    $display("@%0t:thread1:Triggered event1",$time);
+  end
+//--------------------------------------------------------------------------------------------
+// process-2 using @ operator
+//--------------------------------------------------------------------------------------------
+  initial 
+  begin
+    $display("@%0t:thread2:Waiting for the event at 20ns",$time);
+    #20 @(e1);
+    $display("@%0t:thread2:Received event1 Triggered",$time);
+  end
+//--------------------------------------------------------------------------------------------
+// process-3 using wait construct
+//--------------------------------------------------------------------------------------------
+  initial 
+  begin
+    $display("@%0t:thread3:Waiting for the event at 20ns",$time);
+    #20 wait(e1.triggered);
+    $display("@%0t:thread3:Received event1 Triggered",$time);
   end
 
 endmodule
+
+
